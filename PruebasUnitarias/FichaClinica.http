@@ -89,3 +89,12 @@ Content-Type: application/json
 {
   "id_ficha": 1
 }
+
+
+### Eliminar (baja lógica) ficha clínica
+POST http://localhost:3001/ficha/seleccionar_similitud_nombre_profesional
+Content-Type: application/json
+
+{
+  "observaciones": "dr"
+}

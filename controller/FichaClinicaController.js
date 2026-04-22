@@ -231,4 +231,33 @@ export default class FichaClinicaController {
     }
 
 
+
+
+
+
+
+    //8. SELECCIONAR LAS FICHAS CLINICAS POR similitud de nombre con profesional
+    static async seleccionar_similitud_nombre_profesional(req, res) {
+        try {
+
+            const {observaciones} = req.body;
+            console.log( req.body);
+
+            if (!observaciones) {
+                return res.status(400).json({message: "sindato"});
+            }
+
+            const fichaClinicaModel = new FichaClinica();
+            const dataFichaClinca = await fichaClinicaModel.seleccionar_similitud_nombre_profesional(observaciones);
+            if (Array.isArray(dataFichaClinca)&&dataFichaClinca.length>0) {
+                return res.status(200).json(dataFichaClinca);
+            } else {
+                return res.status(404).json([]);
+            }
+        } catch (error) {
+            return res.status(500).json({
+                message: "no ha sido posible realizar la query desde FichaClinicaController"
+            })
+        }
+    }
 }
