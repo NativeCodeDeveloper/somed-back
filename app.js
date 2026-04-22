@@ -28,6 +28,9 @@ import { ejecutarRecordatoriosAutomaticos } from "./services/notificacionPreviaD
 import { notificacionAgendamiento } from "./services/notificacionWhatsApp.js";
 import bloqueoAgendaRoutes from "./view/bloqueoAgendaRoutes.js";
 import publicacionesTituloDescripcionRoutes from "./view/publicacionesTtiloDescripcionRoutes.js";
+import fichaPlantillaRoutes from "./view/fichaPlantillaRoutes.js";
+import fichaCategoriaRoutes from "./view/fichaCategoriaRoutes.js";
+import fichaCampoRoutes from "./view/fichaCampoRoutes.js";
 
 
 const app = express();
@@ -70,6 +73,9 @@ app.use("/publicaciones", publicacionesRoutes);
 app.use('/contacto', contactoRouter );
 app.use("/publicacionesTituloDetalle", publicacionesTituloDescripcionRoutes);
 app.use('/notificacion', notificacionAgendamientoRoutes);
+app.use('/fichaplantilla', fichaPlantillaRoutes);
+app.use('/fichaCategoria', fichaCategoriaRoutes);
+app.use('/fichaCampo', fichaCampoRoutes);
 
 // Ruta para ejecutar recordatorios manualmente (protegido con TEST_API_KEY)
 app.get('/recordatorios/ejecutar', async (req, res) => {

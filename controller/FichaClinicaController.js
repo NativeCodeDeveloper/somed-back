@@ -57,17 +57,36 @@ export default class FichaClinicaController {
                 archivosAdjuntos,
                 fechaConsulta,
                 consentimientoFirmado,
+                id_plantilla,
+                datosDinamicos,
                 id_ficha
             } = req.body;
 
             console.log(req.body);
+
+            const datosdinamicos_json_stringfy = datosDinamicos ? JSON.stringify(datosDinamicos) : null;
 
             if (!id_ficha) {
                 return res.status(400).json({message: "sindato"});
             }
 
             const fichaclinicamodel = new FichaClinica();
-            const resultadoQuery = await fichaclinicamodel.updateFichaEspecifica(tipoAtencion, motivoConsulta, signosVitales, observaciones, anotacionConsulta, anamnesis, diagnostico, indicaciones, archivosAdjuntos, fechaConsulta, consentimientoFirmado, id_ficha)
+            const resultadoQuery = await fichaclinicamodel.updateFichaEspecifica(
+                tipoAtencion,
+                motivoConsulta,
+                signosVitales,
+                observaciones,
+                anotacionConsulta,
+                anamnesis,
+                diagnostico,
+                indicaciones,
+                archivosAdjuntos,
+                fechaConsulta,
+                consentimientoFirmado,
+                id_plantilla,
+                datosdinamicos_json_stringfy,
+                id_ficha);
+
             if (resultadoQuery.affectedRows > 0) {
                 return res.status(200).json({message: true});
             } else {
@@ -95,10 +114,13 @@ export default class FichaClinicaController {
                 indicaciones,
                 archivosAdjuntos,
                 fechaConsulta,
-                consentimientoFirmado
+                consentimientoFirmado,
+                id_plantilla,
+                datosDinamicos
             } = req.body;
             console.log(req.body);
 
+            const datosDinamicos_json_stringfy = datosDinamicos ? JSON.stringify(datosDinamicos) : null;
 
             if (!id_paciente) {
                 return res.status(400).json({message: "sindato"});
@@ -117,7 +139,10 @@ export default class FichaClinicaController {
                 indicaciones,
                 archivosAdjuntos,
                 fechaConsulta,
-                consentimientoFirmado
+                consentimientoFirmado,
+                id_plantilla,
+                datosDinamicos_json_stringfy
+
             );
 
             if (resultadoQuery.affectedRows > 0) {
